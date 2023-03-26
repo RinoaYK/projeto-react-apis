@@ -6,7 +6,7 @@ import {
   ModalOverlay,
   Modal,
   ModalContent,
-  ModalHeader
+  ModalHeader  
 } from '@chakra-ui/react'
 import { BarLoader, BeatLoader } from 'react-spinners'
 import pokeballCapturar from '../../assets/pokeballCapturar.gif'
@@ -42,6 +42,7 @@ const AlertCapturar = ({
           p='0.5em'
           fontFamily='poppins'
           bg='white'
+          minWidth='fit-content'
         >
           <Flex align='center' justify='center' direction='column'>
             <ModalHeader>
@@ -124,8 +125,10 @@ const AlertCapturar = ({
               fontSize='20px'
               fontFamily='poppins'
               fontStyle='bold'
+              align='center'
+              justify='center'              
             >
-              <Text color={cardColor} mr='0.5em' textTransform='capitalize'>
+              <Text color={cardColor} mr='0.5em' textTransform='capitalize' >
                 {name}
               </Text>
               <Text color='black'>foi adicionado a sua Pokédex!</Text>
@@ -141,8 +144,8 @@ const AlertCapturar = ({
         closeOnOverlayClick={false}
         closeOnEsc={false}
       >
-        <ModalOverlay minWidth='fit-content' objectFit='contain' />
-        <ModalContent bg='white'>
+        <ModalOverlay  objectFit='contain' />
+        <ModalContent bg='white' minWidth='fit-content'>
           <Flex
             align='center'
             justify='center'
