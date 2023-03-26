@@ -16,7 +16,7 @@ import { IoLogoDeviantart } from 'react-icons/io5'
 const Footer = () => {
   const location = useLocation()
   const isHome = location.pathname === '/'
-  const isPokedex = location.pathname === '/pokedex'
+  const isPokedex = location.pathname === '/pokedex'  
   const isDetalhes = /^\/pokemon\/.+/.test(location.pathname)
   const linkedinIcon = useIcon(AiOutlineLinkedin, AiFillLinkedin, 10)
   const githubIcon = useIcon(VscGithubAlt, VscGithubInverted, 8)
@@ -83,8 +83,8 @@ const Footer = () => {
         <Link
           href='https://www.deviantart.com/rinoayk'
           target='_blank'
-          rel='noopener noreferrer'         
-        >          
+          rel='noopener noreferrer'
+        >
           {devianIcon}
         </Link>
       </Flex>
