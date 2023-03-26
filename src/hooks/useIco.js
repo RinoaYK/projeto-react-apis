@@ -8,12 +8,12 @@ const useIcon = (icon, hoverIcon, sizeIco) => {
 
   return (
     <Icon
+      cursor={`url(${mousePointerOK}), auto`}
+      _active={{ cursor: `url(${mouseGrab}), auto` }}
       as={isHovered ? hoverIcon : icon}
       boxSize={sizeIco}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      cursor={`url(${mousePointerOK}), auto`}
-      _active={{ cursor: `url(${mouseGrab}), auto` }}
     />
   )
 }

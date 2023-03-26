@@ -5,12 +5,7 @@ import mousePointerOK from '../../src/assets/mousePointerOK.png'
 import mouseGrab from '../../src/assets/mouseGrab.png'
 import CardBackImage from '../../src/assets/pokebolaError.png'
 
-const CardMemory = ({
-  card,
-  handleChoice,
-  flipped,
-  disabled  
-}) => {
+const CardMemory = ({ card, handleChoice, flipped, disabled }) => {
   const { colorMode } = useColorMode()
 
   const handleClick = () => {
@@ -59,7 +54,7 @@ const CardMemory = ({
           width='100%'
           display='block'
           borderRadius='xl'
-          bg={colorMode === 'light' ? 'light.white' : 'dark.detalhesBG'}         
+          bg={colorMode === 'light' ? 'light.white' : 'dark.detalhesBG'}
           boxShadow='lg'
           cursor={`url(${mousePointerOK}), auto`}
           _active={{ cursor: `url(${mouseGrab}), auto` }}

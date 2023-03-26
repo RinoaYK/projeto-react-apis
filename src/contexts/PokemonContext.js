@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react'
+import { ColorContext } from './ColorContext'
 import axios from 'axios'
 
 export const PokemonContext = createContext()
@@ -72,9 +73,89 @@ const PokemonProvider = ({ children }) => {
     setPokemons(updatedPokemons)
   }
 
+  const [pokemonsButton, setPokemonsButton] = useState('')
+  const [pokeId, setPokeId] = useState('')
+  const [pokemonPokedex, setPokemonPokedex] = useState(false)
+
+  const [iconUrl, setIconUrl] = useState('')
+  const [imageForAlertCapturar, setImageForAlertCapturar] = useState('')
+  const [imageForAlertExcluir, setImageForAlertExcluir] = useState('')
+  const [cardColor, setCardColor] = useState('')
+  const [captureRate, setCaptureRate] = useState('')
+  const [catchChance, setCatchChance] = useState('')
+  const [isCaptured, setIsCaptured] = useState('')
+  const { getColors } = useContext(ColorContext)  
+
+  const searchPokeButton = async (name, goToError) => {
+    try {
+      const response = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon/${name}/`
+      )
+      const speciesResponse = await axios.get(response.data.species.url)
+      const species = await speciesResponse.data
+      const updatedData = {
+        ...response.data,
+        capture_rate: species.capture_rate
+      }
+      setPokemonsButton(updatedData)
+      setPokeId(response.data.id)
+      setIconUrl(
+        response.data.sprites.versions['generation-vii'].icons.front_default
+      )
+      setImageForAlertCapturar(
+        response.data.sprites.versions['generation-iv']['heartgold-soulsilver']
+          .front_default ||
+          response.data.sprites.versions['generation-v']['black-white']
+            .front_default
+      )
+      setImageForAlertExcluir(
+        response.data.sprites.versions['generation-iv']['heartgold-soulsilver']
+          .back_default ||
+          response.data.sprites.versions['generation-v']['black-white']
+            .back_default
+      )
+
+      setCardColor(getColors(response.data.types[0].type.name))
+      const capture_rate = updatedData.capture_rate
+      const catchChance = calculateCatchChance(capture_rate)
+      const isCaptured = Math.random() * 100 <= catchChance
+      setCaptureRate(capture_rate)
+      setCatchChance(catchChance)
+      setIsCaptured(isCaptured)      
+
+      const savedPokedex = localStorage.getItem('pokedex')
+      if (savedPokedex) {
+        const pokedex = JSON.parse(savedPokedex)
+        const filteredData = pokedex.filter(p => p.name === response.data.name)
+        if (filteredData.length > 0 && filteredData[0].name === response.data.name) {
+          setPokemonPokedex(true)
+        } else {
+          setPokemonPokedex(false)
+        }
+      } else {
+        setPokemonPokedex(false)
+      }
+      
+    } catch (error) {
+      goToError()
+    }
+  }
+
   return (
     <PokemonContext.Provider
       value={{
+        setPokemonPokedex,
+        pokemonsButton,
+        pokeId,
+        pokemonPokedex,
+        iconUrl,
+        imageForAlertCapturar,
+        imageForAlertExcluir,
+        cardColor,
+        captureRate,
+        catchChance,
+        isCaptured,
+        searchPokeButton,
         isLoading,
         error,
         pokemons,
