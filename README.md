@@ -4,7 +4,15 @@
 <br>
 <br>
 
-	@@ -16,7 +16,6 @@ Este projeto teve como fonte de dados para a sua criação a [Poke Api](https://
+# Projeto React e API's
+O Projeto React e APIs é um site de pokémons que possui três páginas principais: <a href='#home'> Home, </a><a href='#pokedex'>Pokédex, </a><a href='#detalhes'>Detalhes</a>.
+
+Este projeto teve como fonte de dados para a sua criação a [Poke Api](https://pokeapi.co/ "Poke Api").
+<br>
+<br>
+
+## **Tecnologias Utilizadas:**
+
 - React
 - React Router
 - React Context
@@ -12,7 +20,11 @@
 - Criação de hooks
 - Integração de APIs - Axios
 - Design Systems -  [Chakra](https://chakra-ui.com/ "Chakra UI")
-	@@ -28,15 +27,14 @@ Este projeto teve como fonte de dados para a sua criação a [Poke Api](https://
+- Local Storage
+- Responsividade
+
+<br>
+
 # <img src='./src/assets/favicon.ico' alt='pokebola' style='width: 30px'> **Pokedéx**
 O projeto consiste em:
 - **Gerais:**
@@ -28,7 +40,8 @@ O projeto consiste em:
 	- Cada Pokémon é representado por um Card;
 	- Contém uma lista de Pokémons, que dependendo do tamanho na tela, muda a quantidade de cards mostrados em cada página;
 	- Em cada card contém  um botão para tentar capturar o Pokémon que o adiciona a sua Pokédex e outro para acessar os detalhes do Pokémon;
-	@@ -45,37 +43,56 @@ O projeto consiste em:
+	- Contém 2 filtros, onde é possível filtrar pelo tipo do Pokémon e no outro ordená-los na ordem Crescente ou Decrescente de acordo com os nomes de cada um;
+	- No Header tem um input de busca pelo nome e um botão para acessar a página da Pokédex, para telas menores, como no celular, o Botão para acessar a Pokedéx e o input de busca, se encontram mais abaixo da página;
 	- No Header tem um botão para mudar o tema de claro para escuro;
 	- Quando um Pokémon é capturado, o card é retirado da Home e passa para a página da Pokédex;
 	- **Atenção!!** Foi adicionado uma chance de captura para cada Pokémon, a chance foi baseada no 'capture rate' de cada Pokémon contido na API.
